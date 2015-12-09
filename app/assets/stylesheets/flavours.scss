@@ -1,9 +1,8 @@
-#staticPage {
-
-  .cover-img {
+#flavours {
+  .cover-flavours-img {
     width: 100%;
-    height: 1000px;
-    background-image: image-url("background.png");
+    height: 500px;
+    background-image: image-url("profile_background.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position:center;
@@ -14,9 +13,10 @@
 
   .description {
     width: 500px;
-    height: 200px;
+    height: 150px;
     float: right;
     margin-right: 200px;
+    text-align: center;
   }
 
   p {

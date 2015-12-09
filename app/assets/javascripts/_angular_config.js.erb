@@ -19,6 +19,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($s
       controller: 'LoginCtrl'
     })
 
+    .state('flavours', {
+      url: '/flavours',
+      templateUrl: "<%= asset_path('flavours/flavours.html')%>"
+    })
+
+
   $urlRouterProvider.otherwise('/');
 
   $authProvider.configure({
