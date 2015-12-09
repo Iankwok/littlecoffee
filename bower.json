@@ -5,6 +5,7 @@
     "angular": "~1.4.8",
     "angular-cookie": "~4.0.9",
     "ng-token-auth": "~0.0.28",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.6"
   }
 }
