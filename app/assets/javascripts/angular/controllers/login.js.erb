@@ -1,3 +1,17 @@
-app.controller("HomeCtrl", ['$scope', function($scope){
-  console.log("test")
+app.controller('LoginCtrl', ['$scope', '$auth', '$location', function($scope, $auth, $location){
+  $scope.login = function () {
+
+    $auth.submitLogin($scope.loginForm).
+     then(function(resp) {
+       // handle success response
+       console.log(resp);
+
+       // redirect back to root when registration succesfull
+       $location.path('/');
+     }).
+     catch(function(resp) {
+       // handle error response
+       console.log(resp);
+     });
+  };
 }])

@@ -5,13 +5,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($s
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: "<%= asset_path('static_pages/index.html') %>"
+      templateUrl: "<%= asset_path('static_pages/index.html') %>",
+      controller: 'HomeCtrl'
     })
     .state('signup', {
       url: '/signup',
       templateUrl: "<%= asset_path('auth/signup.html')%>",
       controller: 'SignUpCtrl'
-    });
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: "<%= asset_path('auth/login.html')%>",
+      controller: 'LoginCtrl'
+    })
 
   $urlRouterProvider.otherwise('/');
 
