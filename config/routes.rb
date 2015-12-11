@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     resources :beans, only:[:index], defaults: {:format => 'json'}
   end
 
-  # resources :beans
+  # resources :beans, only:[:index]
 
 end

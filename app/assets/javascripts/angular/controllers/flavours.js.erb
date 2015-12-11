@@ -1,6 +1,8 @@
-app.controller('FlavoursCtrl', ['$scope', '$auth', function($scope, $auth){
+app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $auth, $http){
+  $scope.cart = $localStorage.cart || {};
 
   $scope.preferences = {
+    filter: [],
     berry: {
       imgOn:  "<%= asset_path('berry.jpg') %>",
       imgOff: "<%= asset_path('berry_off.jpg') %>",
@@ -34,19 +36,32 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', function($scope, $auth){
   }
 
   $scope.toggleInput = function (p) {
+    console.log($scope.cart)
+    var pCapitalized = p.capitalize();
+    var pIndex = $scope.preferences.filter.indexOf(pCapitalized);
+    if (pIndex !== -1) {
+      $scope.preferences.filter.splice(pIndex, 1);
+    } else {
+      $scope.preferences.filter.push(pCapitalized);
+    }
+
     $scope.preferences[p].active = !$scope.preferences[p].active;
   }
 
-  // $scope.submitPreferences = function () {
-  //   var params = {
-  //     spice: $scope.preferences.spice.active
-  //   }
+  $scope.filterPreference = function(bean) {
+    if ($scope.preferences.filter.length == 0){
+      return ($scope.preferences.filter.indexOf(bean.flavours) == -1);
+    } else {
+      return ($scope.preferences.filter.indexOf(bean.flavours) !== -1);
+    }
+  };
 
-  //   $http({
-  //     method: "GET",
-  //     url: "http://localhost:3000/beans"
-  //     params: params
-  //   })
-  // }
+  $http({
+    method: "GET",
+    url: "http://localhost:3000/api/beans"
+  }).then(function(data){
+    console.log(data.data)
+    $scope.beans = data.data;
+  })
 
 }])

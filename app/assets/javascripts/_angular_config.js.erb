@@ -1,4 +1,4 @@
-var app = angular.module("littlecoffee", ['ui.router', 'ng-token-auth'])
+var app = angular.module("littlecoffee", ['ui.router', 'ng-token-auth', 'ngResource'])
 
 app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider){
 
@@ -29,11 +29,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($s
         }
       }
     })
-    .state('buy', {
-      url: '/buy',
-      templateUrl: "<%= asset_path('buy/buy.html')%>"
-    })
-
 
   $urlRouterProvider.otherwise('/');
 

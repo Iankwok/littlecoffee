@@ -38,6 +38,21 @@
       </li>
     </div>
   </ul>
-
   </section>
+
+<!-- Product Selection -->
+
+  <section>
+    <ul>
+      <li ng-repeat='bean in beans | filter : filterPreference'>
+        <div style="border: 1px solid black">
+          <p>{{bean.bean_name}}</p>
+          <input type="number" ng-model="cart[bean.id]">
+        </div>
+      </li>
+    </ul>
+  </section>
+
+
+
 </div>

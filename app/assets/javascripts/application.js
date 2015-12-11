@@ -14,7 +14,13 @@
 //= require jquery_ujs
 //= require angular/angular
 //= require angular-ui-router/release/angular-ui-router
+//= require angular-resource/angular-resource
 //= require angular-cookie/angular-cookie
 //= require ng-token-auth/dist/ng-token-auth
-//= require_tree .
 //= require bootstrap/dist/js/bootstrap.min
+//= require_tree .
+//= require_self
+
+String.prototype.capitalize = function() {
+    return this.replace(/_/, ' ').replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
