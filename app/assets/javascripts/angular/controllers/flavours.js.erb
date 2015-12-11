@@ -1,0 +1,52 @@
+app.controller('FlavoursCtrl', ['$scope', '$auth', function($scope, $auth){
+
+  $scope.preferences = {
+    berry: {
+      imgOn:  "<%= asset_path('berry.jpg') %>",
+      imgOff: "<%= asset_path('berry_off.jpg') %>",
+      active: false
+    },
+    chocolate: {
+      imgOn:  "<%= asset_path('chocolate.jpg') %>",
+      imgOff: "<%= asset_path('chocolate_off.jpg') %>",
+      active: false
+    },
+    citrus: {
+      imgOn:  "<%= asset_path('citrus.jpg') %>",
+      imgOff: "<%= asset_path('citrus_off.jpg') %>",
+      active: false
+    },
+    nuts: {
+      imgOn:  "<%= asset_path('nuts.jpg') %>",
+      imgOff: "<%= asset_path('nuts_off.jpg') %>",
+      active: false
+    },
+    spices: {
+      imgOn:  "<%= asset_path('spices.jpg') %>",
+      imgOff: "<%= asset_path('spices_off.jpg') %>",
+      active: false
+    },
+    tropical_fruit: {
+      imgOn:  "<%= asset_path('tropical_fruit.jpg') %>",
+      imgOff: "<%= asset_path('tropical_fruit_off.jpg') %>",
+      active: false
+    },
+  }
+
+  $scope.toggleInput = function (p) {
+    $scope.preferences[p].active = !$scope.preferences[p].active;
+  }
+
+  // $scope.submitPreferences = function () {
+  //   var params = {
+  //     spice: $scope.preferences.spice.active
+  //   }
+
+  //   $http({
+  //     method: "GET",
+  //     url: "http://localhost:3000/beans"
+  //     params: params
+  //   })
+  // }
+
+}])

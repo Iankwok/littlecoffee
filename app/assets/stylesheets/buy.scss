@@ -1,0 +1,13 @@
+#buy {
+  .cover-buy-img {
+    width: 100%;
+    height: 200px;
+    background-image: image-url("buy.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    overflow: auto;
+    color: white;
+    margin-top: 0px;
+  }
+}
