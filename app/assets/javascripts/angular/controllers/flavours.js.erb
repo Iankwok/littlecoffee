@@ -1,5 +1,6 @@
 app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $auth, $http){
-  $scope.cart = $localStorage.cart || {};
+  // $scope.cart = $localstorage.cart || {};
+  $scope.cart = {};
 
   $scope.preferences = {
     filter: [],

@@ -2,7 +2,7 @@
   <div class="cover-flavours-img">
     <user-nav-bar></user-nav-bar>
     <div class="description">
-      <h1>Palete Profile </h1>
+      <h1>Choose Your Favorite Flavours </h1>
       <a href="/#/flavours"><button class="btn btn-start">Next</button></a>
     </div>
   </div>
@@ -42,17 +42,20 @@
 
 <!-- Product Selection -->
 
-  <section>
-    <ul>
-      <li ng-repeat='bean in beans | filter : filterPreference'>
-        <div style="border: 1px solid black">
-          <p>{{bean.bean_name}}</p>
-          <input type="number" ng-model="cart[bean.id]">
-        </div>
-      </li>
-    </ul>
-  </section>
-
-
+<section class='container-fluid'>
+  <li ng-repeat='bean in beans | filter : filterPreference'  class='col-sm-6 col-md-6 col-lg-4 well'>
+    <img src="http://flags.fmcdn.net/data/flags/normal/et.png">
+    <!-- <p>{{bean.image}}</p> -->
+    <h3>{{bean.bean_name}}</h3>
+    <p>{{bean.flavours}}</p>
+    <p>{{bean.description}}</p>
+    <p>{{bean.weight}} grams</p>
+    <p>${{bean.price}}</p>
+    <p>{{bean.stock}}</p>
+    <!-- flex wrap -->
+    <input type="number" ng-model="cart[bean.id]">
+    <button type="submit">Add to Cart</button>
+  </li>
+</section>
 
 </div>
