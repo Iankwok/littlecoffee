@@ -12,25 +12,35 @@
   }
 
   .description {
-    width: 500px;
-    height: 150px;
+    width: 50%;
+    height: 200px;
     float: right;
-    margin-right: 200px;
-    text-align: center;
+    margin-right: 100px;
+    margin-top: -80px;
   }
 
-  p {
-    font-size: 26px;
+  h1 {
     line-height: 150%;
+    font-size: 30px;
   }
 
-  button {
+  .btn-start {
     background-color: #E5692C;
     color: white;
-    width: 270px;
-    height: 68px;
+    width: 200px;
+    height: 60px;
     font-size: 22px;
     margin-top: 20px;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display: inline-block;
+    text-align: center;
+    margin-top: 50px;
   }
 
 }

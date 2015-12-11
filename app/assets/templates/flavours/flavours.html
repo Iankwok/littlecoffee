@@ -2,9 +2,42 @@
   <div class="cover-flavours-img">
     <user-nav-bar></user-nav-bar>
     <div class="description">
-      <p>Palete Profile </p>
-      <p>What flavours do you like? Pick your favorites!</p>
-      <a href="/"><button class="btn">Next</button></a>
+      <h1>Palete Profile </h1>
+      <a href="/#/flavours"><button class="btn btn-start">Next</button></a>
     </div>
   </div>
+
+  <section>
+  <ul>
+    <div class='row'>
+      <li class="berry col-md-4">
+        <img ng-src="{{preferences.berry.imgOn}}" ng-show="preferences.berry.active" ng-click="toggleInput('berry')">
+        <img ng-src="{{preferences.berry.imgOff}}" ng-hide="preferences.berry.active" ng-click="toggleInput('berry')">
+      </li>
+      <li class="chocolate col-md-4">
+        <img ng-src="{{preferences.chocolate.imgOn}}" ng-show="preferences.chocolate.active" ng-click="toggleInput('chocolate')">
+        <img ng-src="{{preferences.chocolate.imgOff}}" ng-hide="preferences.chocolate.active" ng-click="toggleInput('chocolate')">
+      </li>
+      <li class="citrus col-md-4">
+        <img ng-src="{{preferences.citrus.imgOn}}" ng-show="preferences.citrus.active" ng-click="toggleInput('citrus')">
+        <img ng-src="{{preferences.citrus.imgOff}}" ng-hide="preferences.citrus.active" ng-click="toggleInput('citrus')">
+      </li>
+    </div>
+    <div class='row'>
+      <li class="nuts col-md-4">
+        <img ng-src="{{preferences.nuts.imgOn}}" ng-show="preferences.nuts.active" ng-click="toggleInput('nuts')">
+        <img ng-src="{{preferences.nuts.imgOff}}" ng-hide="preferences.nuts.active" ng-click="toggleInput('nuts')">
+      </li>
+      <li class="spices col-md-4">
+        <img ng-src="{{preferences.spices.imgOn}}" ng-show="preferences.spices.active" ng-click="toggleInput('spices')">
+        <img ng-src="{{preferences.spices.imgOff}}" ng-hide="preferences.spices.active" ng-click="toggleInput('spices')">
+      </li>
+      <li class="tropical_fruit col-md-4">
+        <img ng-src="{{preferences.tropical_fruit.imgOn}}" ng-show="preferences.tropical_fruit.active" ng-click="toggleInput('tropical_fruit')">
+        <img ng-src="{{preferences.tropical_fruit.imgOff}}" ng-hide="preferences.tropical_fruit.active" ng-click="toggleInput('tropical_fruit')">
+      </li>
+    </div>
+  </ul>
+
+  </section>
 </div>

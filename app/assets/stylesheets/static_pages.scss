@@ -12,23 +12,25 @@
     margin-top: 0px;
   }
 
+  li {
+    margin-top: 50px;
+  }
+
   .description {
-    width: 500px;
-    height: 200px;
-    float: right;
-    margin-right: 200px;
+    width: 58%;
+    margin: 0 auto;
   }
 
-  p {
-    font-size: 26px;
+  h1 {
     line-height: 150%;
+    font-size: 30px;
   }
 
-  button {
+  .btn-start {
     background-color: #E5692C;
     color: white;
-    width: 270px;
-    height: 68px;
+    width: 200px;
+    height: 60px;
     font-size: 22px;
     margin-top: 20px;
   }

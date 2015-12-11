@@ -21,7 +21,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($s
 
     .state('flavours', {
       url: '/flavours',
-      templateUrl: "<%= asset_path('flavours/flavours.html')%>"
+      templateUrl: "<%= asset_path('flavours/flavours.html')%>",
+      controller: 'FlavoursCtrl'
+    })
+    .state('buy', {
+      url: '/buy',
+      templateUrl: "<%= asset_path('buy/buy.html')%>"
     })
 
 
