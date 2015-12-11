@@ -1,20 +1,25 @@
 app.controller('userNavbarCtrl', ['$scope', 'UserFactory', '$auth', '$rootScope', function($scope, UserFactory, $auth, $rootScope){
-  console.log(UserFactory)
+
+  $auth.validateUser().then(function(user){
+    UserFactory.identity = user;
+    $scope.current_user = user;
+  });
 
   $rootScope.$on('auth:login-success', function(ev, user) {
-    UserFactory.indentity = user;
+    console.log(user)
+    UserFactory.identity = user;
     $scope.current_user = user;
   });
 
   $rootScope.$on('auth:registration-email-success', function(ev, user) {
-    UserFactory.indentity = user;
+    UserFactory.identity = user;
     $scope.current_user = user;
   });
 
   $scope.logout = function () {
     $auth.signOut().then(function(resp) {
       console.log(resp);
-      UserFactory.indentity = null;
+      UserFactory.identity = null;
       $scope.current_user = null;
     }).catch(function(resp) {
 
