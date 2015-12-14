@@ -1,0 +1,24 @@
+#shoppingcart {
+  .cover-shoppingcart-img{
+    width: 100%;
+    height: 200px;
+    background-image: image-url("cart_header.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    overflow: auto;
+    color: white;
+    margin-top: 0px;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display: inline-block;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+}

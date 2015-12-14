@@ -3,7 +3,7 @@
     <user-nav-bar></user-nav-bar>
     <div class="description">
       <h1>Choose Your Favorite Flavours </h1>
-      <a href="/#/flavours"><button class="btn btn-start">Next</button></a>
+      <a href="/#/shoppingcart"><button class="btn btn-start">Shopping Cart Checkout</button></a>
     </div>
   </div>
 
@@ -41,21 +41,20 @@
   </section>
 
 <!-- Product Selection -->
-
-<section class='container-fluid'>
-  <li ng-repeat='bean in beans | filter : filterPreference'  class='col-sm-6 col-md-6 col-lg-4 well'>
-    <img src="http://flags.fmcdn.net/data/flags/normal/et.png">
-    <!-- <p>{{bean.image}}</p> -->
-    <h3>{{bean.bean_name}}</h3>
-    <p>{{bean.flavours}}</p>
-    <p>{{bean.description}}</p>
-    <p>{{bean.weight}} grams</p>
-    <p>${{bean.price}}</p>
-    <p>{{bean.stock}}</p>
-    <!-- flex wrap -->
-    <input type="number" ng-model="cart[bean.id]">
-    <button type="submit">Add to Cart</button>
-  </li>
+<!-- <form ng-submit="addOrder()"> -->
+<section class='product-selection container-fluid'>
+    <li ng-repeat='bean in beans | filter : filterPreference'  class='col-sm-6 col-md-6 col-lg-4 well'>
+      <img src="{{bean.image}}">
+      <h3>{{bean.bean_name}}</h3>
+      <p><span>Flavour:</span> {{bean.flavours}}</p>
+      <p>{{bean.description}}</p>
+      <p><span>Price:</span> ${{bean.price}}/ bag ({{bean.weight}} grams)</p>
+      <!-- <p>{{bean.stock}}</p> -->
+      <input type="number" ng-model="newOrder.quantity" placeholder="Quantity">
+       <!-- ng-model="cart[bean.id]" -->
+      <button ng-click="addOrder(bean.id)" type="submit" class="btn">Add to Cart</button>
+    </li>
 </section>
+<!-- </form> -->
 
 </div>

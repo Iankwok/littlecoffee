@@ -30,6 +30,17 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($s
       }
     })
 
+    .state('shoppingcart', {
+      url: '/shoppingcart',
+      templateUrl: "<%= asset_path('shoppingcart/shoppingcart.html')%>",
+      controller: 'shoppingcartCtrl',
+      resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        }
+      }
+    })
+
   $urlRouterProvider.otherwise('/');
 
   $authProvider.configure({

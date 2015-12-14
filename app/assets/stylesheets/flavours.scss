@@ -24,9 +24,9 @@
   .btn-start {
     background-color: #E5692C;
     color: white;
-    width: 200px;
+    width: 220px;
     height: 60px;
-    font-size: 22px;
+    font-size: 18px;
     margin-top: 20px;
   }
 
@@ -38,6 +38,28 @@
     display: inline-block;
     text-align: center;
     margin-top: 50px;
+  }
+
+  // Product Selection
+  .product-selection {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 20px;
+
+      img {
+      height: 100px;
+      width: 150px;
+    }
+
+      span {
+        font-weight: bold;
+      }
+
+      button {
+        background-color: #E5692C;
+        color: white;
+        text-align: center;
+      }
   }
 
 }
