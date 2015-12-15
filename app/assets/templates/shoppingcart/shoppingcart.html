@@ -2,4 +2,42 @@
   <div class="cover-shoppingcart-img">
     <user-nav-bar></user-nav-bar>
   </div>
+
+  <div class="container">
+    <h2>My Cart</h2>
+    <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Bean Name</th>
+          <th>Unit Price (HKD)</th>
+          <th>Quantity</th>
+          <th>Total Price (HKD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='orderdetail in orders' >
+          <td>{{orderdetail.bean_name}}</td>
+          <td>{{orderdetail.price}}</td>
+          <td>{{orderdetail.quantity}}</td>
+          <td>{{orderdetail.price*orderdetail.quantity}}</td>
+          <td><button ng-click="deleteOrderDetail(orderdetail.order_detail_id)">Remove</button></td>
+        </tr>
+        <tr>Grand Total:</tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+<!--   <form action="" method="POST">
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_WiuhJ7qaYllX2BMbT333Hy3S"
+      data-amount="2000"
+      data-name="Demo Site"
+      data-description="2 widgets ($20.00)"
+      data-image="/128x128.png"
+      data-locale="auto">
+    </script>
+  </form> -->
 </div>

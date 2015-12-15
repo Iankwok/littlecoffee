@@ -1,8 +1,7 @@
 app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $auth, $http){
-  // $scope.cart = $localstorage.cart || {};
 
-  // $scope.cart = {};
   $scope.addOrder = addOrder;
+  $scope.newOrder ={};
 
   $scope.preferences = {
     filter: [],
@@ -39,7 +38,6 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
   }
 
   $scope.toggleInput = function (p) {
-    console.log($scope.cart)
     var pCapitalized = p.capitalize();
     var pIndex = $scope.preferences.filter.indexOf(pCapitalized);
     if (pIndex !== -1) {
@@ -63,15 +61,15 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
     method: "GET",
     url: "http://localhost:3000/api/beans"
   }).then(function(data){
-    console.log(data.data);
     $scope.beans = data.data;
   })
 
-  function addOrder(id){
+  function addOrder(bean_id, quantity){
+    console.log({quantity: quantity, bean_id: bean_id})
     $http
-    .post('http://localhost:3000/api/orders', $scope.newOrder)
+    .post('http://localhost:3000/api/orders', {quantity: quantity, bean_id: bean_id})
     .success(function(data){
-      console.log("Posted")
+      console.log(data)
     });
     $scope.newOrder = {};
   }

@@ -1,3 +1,24 @@
 app.controller('shoppingcartCtrl', ['$scope', '$auth', '$http', function($scope, $auth, $http){
 
+  $scope.deleteOrderDetail = deleteOrderDetail;
+
+  $http({
+    method: "GET",
+    url: "http://localhost:3000/api/orders"
+  }).then(function(data){
+    $scope.orders = data.data;
+    console.log(data.data);
+
+  })
+
+  function deleteOrderDetail(id){
+    $http
+    .delete("http://localhost:3000/api/orders/" + id)
+    .then(function(data){
+      var index = $scope.orders.indexOf(id);
+      $scope.orders.splice(index, 1);
+    })
+  }
+
+
 }])

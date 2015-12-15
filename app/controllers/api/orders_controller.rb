@@ -5,8 +5,7 @@ module API
     skip_before_filter  :verify_authenticity_token
 
     def index
-      orders = current_user.orders
-      render json: orders.all
+      @order_details = current_user.orders.first.order_details.includes(:bean).all
     end
 
     def create
@@ -22,7 +21,8 @@ module API
     end
 
     def show
-      render json: Order.find(params[:id])
+      @order_details = current_user.orders.first.order_details.find(params[:id])
+      render json: @order_details
     end
 
     # def update
@@ -34,10 +34,11 @@ module API
     #   end
     # end
 
-    # def destroy
-    #   order = Order.find(params[:id])
-    #   order.destroy
-    # end
+    def destroy
+      @order_details = current_user.orders.first.order_details.find(params[:id])
+      @order_details.destroy
+      render json:({message: 'Successfully deleted'})
+    end
 
     private
     # def order_details_params

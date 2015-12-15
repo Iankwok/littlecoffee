@@ -41,20 +41,19 @@
   </section>
 
 <!-- Product Selection -->
-<!-- <form ng-submit="addOrder()"> -->
-<section class='product-selection container-fluid'>
+  <section class='product-selection container-fluid'>
     <li ng-repeat='bean in beans | filter : filterPreference'  class='col-sm-6 col-md-6 col-lg-4 well'>
-      <img src="{{bean.image}}">
-      <h3>{{bean.bean_name}}</h3>
-      <p><span>Flavour:</span> {{bean.flavours}}</p>
-      <p>{{bean.description}}</p>
-      <p><span>Price:</span> ${{bean.price}}/ bag ({{bean.weight}} grams)</p>
-      <!-- <p>{{bean.stock}}</p> -->
-      <input type="number" ng-model="newOrder.quantity" placeholder="Quantity">
-       <!-- ng-model="cart[bean.id]" -->
-      <button ng-click="addOrder(bean.id)" type="submit" class="btn">Add to Cart</button>
+      <form ng-submit="addOrder(bean.id, order[$index].quantity)">
+        <img src="{{bean.image}}">
+        <h3>{{bean.bean_name}}</h3>
+        <p><span>Flavour:</span> {{bean.flavours}}</p>
+        <p>{{bean.description}}</p>
+        <p><span>Price:</span> ${{bean.price}}/ bag ({{bean.weight}} grams)</p>
+        <!-- <p>{{bean.stock}}</p> -->
+        <input type="number" ng-model="order[$index].quantity" placeholder="Quantity in Bags">
+        <button type="submit" class="btn">Add to Cart</button>
+      </form>
     </li>
-</section>
-<!-- </form> -->
+  </section>
 
 </div>
