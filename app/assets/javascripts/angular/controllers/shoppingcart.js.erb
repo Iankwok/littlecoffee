@@ -8,17 +8,23 @@ app.controller('shoppingcartCtrl', ['$scope', '$auth', '$http', function($scope,
   }).then(function(data){
     $scope.orders = data.data;
     console.log(data.data);
-
   })
 
-  function deleteOrderDetail(id){
+  function deleteOrderDetail(index){
     $http
-    .delete("http://localhost:3000/api/orders/" + id)
+    .delete("http://localhost:3000/api/orders/" + $scope.orders[index].order_detail_id)
     .then(function(data){
-      var index = $scope.orders.indexOf(id);
       $scope.orders.splice(index, 1);
     })
   }
 
+  $scope.getTotal = function(){
+    var total = 0;
+    for(var i = 0; i < $scope.orders.length; i++){
+        var orderdetail = $scope.orders[i];
+        total += (orderdetail.price * orderdetail.quantity);
+    }
+    return total;
+  }
 
 }])
