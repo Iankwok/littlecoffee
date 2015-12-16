@@ -66,7 +66,7 @@
         <tr ng-repeat="(bean_id, details) in cart">
           <td>{{details.bean_name}}</td>
           <td>{{details.price}}</td>
-          <td><input type="number" min="0" ng-model="details.quantity"></td>
+          <td><input class='form-control' type="number" min="0" ng-model="details.quantity"></td>
           <td>{{details.quantity * details.price}}</td>
           <td ng-click="deleteBean(bean_id)"><i class="fa fa-trash" style='color: #D9534F; font-size:20px;'></i></td>
         </tr>
@@ -78,7 +78,7 @@
           <td></td>
         </tr>
         <tr>
-          <td><a href="/#/checkout"><button ng-click="checkOut()" class="btn btn-start"><i class="fa fa-shopping-cart"></i>Checkout</button></a></td>
+          <td><a href="/#/checkout"><button ng-click="checkOut()" class="btn btn-start"><i class="fa fa-check-square fa-2x"</i><span class='checkout'>Checkout</span></button></a></td>
           <td></td>
           <td></td>
           <td></td>

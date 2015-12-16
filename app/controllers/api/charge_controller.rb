@@ -24,7 +24,6 @@ module API
         redirect_to "http://localhost:3000/#/checkout?error=" + e.to_s
       end
 
-      # here update order status
       order.update(status: "PAID")
 
       redirect_to "http://localhost:3000/#/orders"

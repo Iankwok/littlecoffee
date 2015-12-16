@@ -3,16 +3,16 @@
     <user-nav-bar></user-nav-bar>
   </div>
 
-  <div class="container">
-    <h2>Check Out</h2>
+  <div class="container panel panel-default">
+    <h2 class="panel-heading" >Check Out</h2>
       <div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
-              <th>Bean Name</th>
-              <th>Unit Price (USD)</th>
-              <th>Quantity</th>
-              <th>Subtotal (USD)</th>
+              <th><i class="fa fa-coffee"></i> Bean Name</th>
+              <th><i class="fa fa-dollar"></i> Unit Price (USD)</th>
+              <th><i class="fa fa-plus-square"></i> Quantity</th>
+              <th><i class="fa fa-dollar"></i> Subtotal (USD)</th>
             </tr>
           </thead>
           <tbody>
@@ -23,7 +23,7 @@
               <td>{{orderdetail.price * orderdetail.quantity}}</td>
             </tr>
             <tr>
-              <td>Grand Total: {{getTotal()}}</td>
+              <td><span>Grand Total: {{getTotal()}}</span></td>
               <td></td>
               <td></td>
               <td></td>
@@ -34,5 +34,5 @@
   </div>
 
   <div id="test"></div>
-  <a href="/#/flavours"><button class="btn btn-danger btn-lg">Back</button></a>
+  <a href="/#/flavours"><button class="btn btn-danger btn">Back</button></a>
 </div>

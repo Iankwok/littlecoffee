@@ -1,10 +1,11 @@
 module API
   class OrdersController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_order_details
+    # before_action :set_order_details
 
     def index
-      @order_details = @order.order_details.includes(:bean).all
+      # @order_details = @order.order_details.includes(:bean).all
+      @order_details = current_user.orders.find_by(status: nil).order_details.includes(:bean).all
     end
 
     def create
@@ -37,11 +38,11 @@ module API
 
     private
 
-    def set_order_details
-      @order = current_user.orders.find_by(status: nil)
-      if @order.nil?
-        render json: []
-      end
-    end
+    # def set_order_details
+    #   @order = current_user.orders.find_by(status: nil)
+    #   if @order.nil?
+    #     render json: []
+    #   end
+    # end
   end
 end

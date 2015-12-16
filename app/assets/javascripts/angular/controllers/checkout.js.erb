@@ -5,10 +5,6 @@ app.controller('checkoutCtrl', ['$scope', '$auth', '$http', 'stripe', 'UserFacto
   }
 
   $scope.orders = [];
-  $scope.deleteOrderDetail = deleteOrderDetail;
-  $scope.payment = {
-    amount: 100
-  };
 
   $http({
     method: "GET",
@@ -28,39 +24,7 @@ app.controller('checkoutCtrl', ['$scope', '$auth', '$http', 'stripe', 'UserFacto
    return total;
   }
 
-  function deleteOrderDetail(index){
-    $http
-    .delete("http://localhost:3000/api/orders/" + $scope.orders[index].order_detail_id)
-    .then(function(data){
-      $scope.orders.splice(index, 1);
-      appendPaymentButton()
-    })
-  }
-
-  $scope.charge = function () {
-    stripe.card.createToken($scope.payment.card).then(function (response) {
-      console.log('token created for card ending in ', response.card.last4);
-      // set payment params
-      $scope.payment.card   = void 0;
-      $scope.payment.token  = response.id;
-      $scope.payment.amount = 100;
-      $scope.payment.email  = UserFactory.identity.email;
-
-      console.log($scope.payment)
-      $http({
-        url: "http://localhost:3000/charges",
-        method: "POST",
-        data: $scope.payment
-      }).then(function(response){
-        console.log(response);
-      }, function(response){
-        console.log(response);
-      })
-    })
-  };
-
   function appendPaymentButton () {
-    console.log('regen button')
     var elem = $('#test');
     elem.html('');
 
@@ -72,7 +36,7 @@ app.controller('checkoutCtrl', ['$scope', '$auth', '$http', 'stripe', 'UserFacto
                     'data-amount="' + $scope.getTotal() * 100 + '" ' +
                     'data-name="Little Coffee" ' +
                     'data-description="Coffee Beans ($' + $scope.getTotal() + ')" ' +
-                    'data-image="<%= asset_path("128logo.png") %>" ' +
+                    'data-image="<%= asset_path('128logo.png') %>" ' +
                     'data-shippingAddress=true ' +
                     'data-locale="auto">' +
                   '</script>' +
