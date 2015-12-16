@@ -18,6 +18,7 @@
 //= require angular-cookie/angular-cookie
 //= require ng-token-auth/dist/ng-token-auth
 //= require bootstrap/dist/js/bootstrap.min
+//= require angular-stripe/release/angular-stripe.js
 //= require_tree .
 //= require_self
 
