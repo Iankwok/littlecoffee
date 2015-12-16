@@ -3,13 +3,12 @@
     <user-nav-bar></user-nav-bar>
     <div class="description">
       <h1>Choose Your Favorite Flavours </h1>
-      <a href="/#/shoppingcart"><button class="btn btn-start">Checkout</button></a>
+      <q>Everybody should believe in something. I believe I’ll have another coffee.</q>
     </div>
   </div>
 
-  <section>
-  <ul>
-    <div class='row'>
+  <section class='flavours-selection container-fluid'>
+    <ul>
       <li class="berry col-md-4">
         <img ng-src="{{preferences.berry.imgOn}}" ng-show="preferences.berry.active" ng-click="toggleInput('berry')">
         <img ng-src="{{preferences.berry.imgOff}}" ng-hide="preferences.berry.active" ng-click="toggleInput('berry')">
@@ -22,8 +21,6 @@
         <img ng-src="{{preferences.citrus.imgOn}}" ng-show="preferences.citrus.active" ng-click="toggleInput('citrus')">
         <img ng-src="{{preferences.citrus.imgOff}}" ng-hide="preferences.citrus.active" ng-click="toggleInput('citrus')">
       </li>
-    </div>
-    <div class='row'>
       <li class="nuts col-md-4">
         <img ng-src="{{preferences.nuts.imgOn}}" ng-show="preferences.nuts.active" ng-click="toggleInput('nuts')">
         <img ng-src="{{preferences.nuts.imgOff}}" ng-hide="preferences.nuts.active" ng-click="toggleInput('nuts')">
@@ -36,36 +33,33 @@
         <img ng-src="{{preferences.tropical_fruit.imgOn}}" ng-show="preferences.tropical_fruit.active" ng-click="toggleInput('tropical_fruit')">
         <img ng-src="{{preferences.tropical_fruit.imgOff}}" ng-hide="preferences.tropical_fruit.active" ng-click="toggleInput('tropical_fruit')">
       </li>
-    </div>
-  </ul>
+    </ul>
   </section>
 
 <!-- Product Selection -->
   <section class='product-selection container-fluid'>
     <li ng-repeat='bean in beans | filter : filterPreference'  class='col-sm-6 col-md-6 col-lg-4 well'>
-      <!-- <form ng-submit="addToCart(bean.id, order[$index].quantity)"> -->
         <img src="{{bean.image}}">
         <h3>{{bean.bean_name}}</h3>
         <p><span>Flavour:</span> {{bean.flavours}}</p>
         <p>{{bean.description}}</p>
         <p><span>Price:</span> ${{bean.price}}/ bag ({{bean.weight}} grams)</p>
-        <!-- <input type="number" ng-model="order[$index].quantity" placeholder="Quantity in Bags"> -->
         <button ng-click="addToCart(bean)"class="btn">Add to Cart</button>
-      <!-- </form> -->
     </li>
   </section>
 
-  <section class='cart'>
-  <div class="container">
-    <h2>My Shopping Cart</h2>
+  <section class='cart container-fluid'>
+  <div class="container panel panel-default">
+    <h2 class="panel-heading"><i class="fa fa-shopping-cart"></i>  Shopping Cart</h2>
     <div class="table-responsive">
     <table class="table">
       <thead>
         <tr>
-          <th>Bean Name</th>
-          <th>Unit Price (USD)</th>
-          <th>Quantity</th>
-          <th>Subtotal (USD)</th>
+          <th><i class="fa fa-coffee"></i> Bean Name</th>
+          <th><i class="fa fa-dollar"></i> Unit Price (USD)</th>
+          <th><i class="fa fa-plus-square"></i> Quantity</th>
+          <th><i class="fa fa-dollar"></i> Subtotal (USD)</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -74,10 +68,17 @@
           <td>{{details.price}}</td>
           <td><input type="number" min="0" ng-model="details.quantity"></td>
           <td>{{details.quantity * details.price}}</td>
-          <td><button ng-click="deleteBean(bean_id)">Remove</button></td>
+          <td ng-click="deleteBean(bean_id)"><i class="fa fa-trash" style='color: #D9534F; font-size:20px;'></i></td>
         </tr>
         <tr>
           <td><span>Grand Total: {{getTotal()}}</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="/#/checkout"><button ng-click="checkOut()" class="btn btn-start"><i class="fa fa-shopping-cart"></i>Checkout</button></a></td>
           <td></td>
           <td></td>
           <td></td>

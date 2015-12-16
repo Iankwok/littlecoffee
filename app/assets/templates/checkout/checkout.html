@@ -1,0 +1,38 @@
+<div id="checkout">
+  <div class="cover-shoppingcart-img">
+    <user-nav-bar></user-nav-bar>
+  </div>
+
+  <div class="container">
+    <h2>Check Out</h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Bean Name</th>
+              <th>Unit Price (USD)</th>
+              <th>Quantity</th>
+              <th>Subtotal (USD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='orderdetail in orders'>
+              <td>{{orderdetail.bean_name}}</td>
+              <td>{{orderdetail.price}}</td>
+              <td>{{orderdetail.quantity}}</td>
+              <td>{{orderdetail.price * orderdetail.quantity}}</td>
+            </tr>
+            <tr>
+              <td>Grand Total: {{getTotal()}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+
+  <div id="test"></div>
+  <a href="/#/flavours"><button class="btn btn-danger btn-lg">Back</button></a>
+</div>

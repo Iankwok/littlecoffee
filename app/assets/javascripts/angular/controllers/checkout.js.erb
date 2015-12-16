@@ -1,0 +1,82 @@
+app.controller('checkoutCtrl', ['$scope', '$auth', '$http', 'stripe', 'UserFactory', '$stateParams', function($scope, $auth, $http, stripe, UserFactory, $stateParams){
+
+  if ($stateParams.error) {
+    console.log($stateParams.error);
+  }
+
+  $scope.orders = [];
+  $scope.deleteOrderDetail = deleteOrderDetail;
+  $scope.payment = {
+    amount: 100
+  };
+
+  $http({
+    method: "GET",
+    url: "http://localhost:3000/api/orders"
+  }).then(function(data){
+    console.log(data.data);
+    $scope.orders = data.data;
+    appendPaymentButton();
+  })
+
+  $scope.getTotal = function(){
+    var total = 0;
+      for(var i = 0; i < $scope.orders.length; i++){
+        var orderdetail = $scope.orders[i];
+        total += (orderdetail.price * orderdetail.quantity);
+    }
+   return total;
+  }
+
+  function deleteOrderDetail(index){
+    $http
+    .delete("http://localhost:3000/api/orders/" + $scope.orders[index].order_detail_id)
+    .then(function(data){
+      $scope.orders.splice(index, 1);
+      appendPaymentButton()
+    })
+  }
+
+  $scope.charge = function () {
+    stripe.card.createToken($scope.payment.card).then(function (response) {
+      console.log('token created for card ending in ', response.card.last4);
+      // set payment params
+      $scope.payment.card   = void 0;
+      $scope.payment.token  = response.id;
+      $scope.payment.amount = 100;
+      $scope.payment.email  = UserFactory.identity.email;
+
+      console.log($scope.payment)
+      $http({
+        url: "http://localhost:3000/charges",
+        method: "POST",
+        data: $scope.payment
+      }).then(function(response){
+        console.log(response);
+      }, function(response){
+        console.log(response);
+      })
+    })
+  };
+
+  function appendPaymentButton () {
+    console.log('regen button')
+    var elem = $('#test');
+    elem.html('');
+
+    var button= '<form action="/charge?amount=' + $scope.getTotal() * 100 + '" method="POST">' +
+                  '<script ' +
+                    'src="https://checkout.stripe.com/checkout.js" ' +
+                    'class="stripe-button" ' +
+                    'data-key="pk_test_WiuhJ7qaYllX2BMbT333Hy3S" ' +
+                    'data-amount="' + $scope.getTotal() * 100 + '" ' +
+                    'data-name="Little Coffee" ' +
+                    'data-description="Coffee Beans ($' + $scope.getTotal() + ')" ' +
+                    'data-image="<%= asset_path("128logo.png") %>" ' +
+                    'data-shippingAddress=true ' +
+                    'data-locale="auto">' +
+                  '</script>' +
+                '</form>';
+    $('#test').append(button);
+  }
+}]);

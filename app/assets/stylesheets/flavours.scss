@@ -21,14 +21,16 @@
     font-size: 30px;
   }
 
-  .btn-start {
+  q {
+    font-size: 22px;
+    font-style: italic;
+  }
+
+  button {
     background-color: #E5692C;
     color: white;
-    width: 220px;
-    height: 60px;
-    font-size: 18px;
-    margin-top: 20px;
-  }
+    text-align: center;
+      }
 
   ul {
     list-style: none;
@@ -40,26 +42,36 @@
     margin-top: 50px;
   }
 
+  span {
+   font-weight: bold;
+   font-size: 16px;
+  }
+
+  .flavours-selection {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:center;
+
+    ul {
+      width: 80%;
+    }
+  }
+
   // Product Selection
   .product-selection {
     display: flex;
     flex-wrap: wrap;
-    margin-right: 20px;
+    justify-content:center;
+
+      li {
+        margin-left: 5px;
+        width: 30%
+      }
 
       img {
       height: 100px;
       width: 150px;
     }
-
-      span {
-        font-weight: bold;
-      }
-
-      button {
-        background-color: #E5692C;
-        color: white;
-        text-align: center;
-      }
   }
 
 }

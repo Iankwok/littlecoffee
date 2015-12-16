@@ -30,10 +30,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', 'stripeProv
       }
     })
 
-    .state('shoppingcart', {
-      url: '/shoppingcart',
-      templateUrl: "<%= asset_path('shoppingcart/shoppingcart.html')%>",
-      controller: 'shoppingcartCtrl',
+    .state('checkout', {
+      url: '/checkout?error',
+      templateUrl: "<%= asset_path('checkout/checkout.html')%>",
+      controller: 'checkoutCtrl',
       resolve: {
         auth: function($auth) {
           return $auth.validateUser();

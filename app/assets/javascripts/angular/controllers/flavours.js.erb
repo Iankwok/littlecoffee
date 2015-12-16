@@ -1,9 +1,8 @@
 app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $auth, $http){
 
-  $scope.addOrder = addOrder;
+  $scope.checkOut = checkOut;
   $scope.newOrder ={};
   $scope.cart = {};
-  $scope.shoppingCart ={};
 
   $scope.preferences = {
     filter: [],
@@ -59,18 +58,20 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
     }
   };
 
-  function addOrder(bean_id, quantity){
-    console.log({quantity: quantity, bean_id: bean_id})
-    $http
-    .post('http://localhost:3000/api/orders', {quantity: quantity, bean_id: bean_id})
-    .success(function(data){
-      console.log(data)
-    });
-    $scope.newOrder = {};
+  function checkOut(){
+    for(var key in $scope.cart){
+      $http
+      .post('http://localhost:3000/api/orders', {quantity: $scope.cart[key].quantity, bean_id: key})
+      .success(function(data){
+        console.log(data)
+      });
+    }
   }
 
   $scope.addToCart = function (bean){
-    if (!$scope.cart[bean.id]) {
+    if ($scope.cart[bean.id]) {
+      $scope.cart[bean.id].quantity += 1;
+    } else {
       $scope.cart[bean.id] = bean;
       $scope.cart[bean.id].quantity = 1;
     }
@@ -88,10 +89,30 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
     return total;
   }
 
+  function initializeCart (orderDetails) {
+    orderDetails.forEach(function(detail, index, array){
+      $scope.cart[detail.bean_id] = detail.bean;
+      $scope.cart[detail.bean_id].quantity = detail.quantity;
+    })
+  }
+
+// GET all beans
   $http({
     method: "GET",
     url: "http://localhost:3000/api/beans"
   }).then(function(data){
     $scope.beans = data.data;
   })
+
+  $http({
+    method: "GET",
+    url: "http://localhost:3000/api/orders"
+  }).then(function(data){
+    console.log(data.data);
+    $scope.orderDetails = data.data;
+    if ($scope.orderDetails) {
+      initializeCart($scope.orderDetails);
+    }
+  })
+
 }])
