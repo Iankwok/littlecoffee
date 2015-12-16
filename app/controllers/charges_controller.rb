@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
 
+  # review-denis | move this to api folder
   def new
     @description = new_params[:description]
     @amount      = new_params[:amount]

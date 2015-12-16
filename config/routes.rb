@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :orders, only:[:index, :show, :create, :update, :destroy], defaults: {:format => 'json'}
   end
 
+  # review-denis | put in api
   resources :charges
 end

@@ -3,7 +3,7 @@
     <user-nav-bar></user-nav-bar>
     <div class="description">
       <h1>Choose Your Favorite Flavours </h1>
-      <a href="/#/shoppingcart"><button class="btn btn-start">Shopping Cart Checkout</button></a>
+      <a href="/#/shoppingcart"><button class="btn btn-start">Checkout</button></a>
     </div>
   </div>
 
@@ -43,7 +43,7 @@
 <!-- Product Selection -->
   <section class='product-selection container-fluid'>
     <li ng-repeat='bean in beans | filter : filterPreference'  class='col-sm-6 col-md-6 col-lg-4 well'>
-      <form ng-submit="addOrder(bean.id, order[$index].quantity)">
+      <form ng-submit="addToCart(bean.id, order[$index].quantity)">
         <img src="{{bean.image}}">
         <h3>{{bean.bean_name}}</h3>
         <p><span>Flavour:</span> {{bean.flavours}}</p>

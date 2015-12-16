@@ -1,8 +1,6 @@
 module API
   class OrdersController < ApplicationController
-
     before_action :authenticate_user!
-    skip_before_filter  :verify_authenticity_token
 
     def index
       @order_details = current_user.orders.first.order_details.includes(:bean).all

@@ -2,6 +2,7 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
 
   $scope.addOrder = addOrder;
   $scope.newOrder ={};
+  $scope.cart = {};
 
   $scope.preferences = {
     filter: [],
@@ -72,6 +73,15 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
       console.log(data)
     });
     $scope.newOrder = {};
+  }
+
+  $scope.addToCart = function (bean_id, quantity){
+    console.log({quantity: quantity, bean_id: bean_id})
+    if ($scope.cart[bean_id]) {
+      $scope.cart[bean_id] += quantity;
+    } else {
+      $scope.cart[bean_id] = quantity;
+    }
   }
 
 }])
