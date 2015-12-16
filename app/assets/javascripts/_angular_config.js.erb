@@ -1,6 +1,6 @@
-var app = angular.module("littlecoffee", ['ui.router', 'ng-token-auth'])
+var app = angular.module("littlecoffee", ['ui.router', 'ng-token-auth', 'ngResource', 'angular-stripe'])
 
-app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider){
+app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', 'stripeProvider', function($stateProvider, $urlRouterProvider, $authProvider, stripeProvider){
 
   $stateProvider
     .state('home', {
@@ -19,6 +19,28 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($s
       controller: 'LoginCtrl'
     })
 
+    .state('flavours', {
+      url: '/flavours',
+      templateUrl: "<%= asset_path('flavours/flavours.html')%>",
+      controller: 'FlavoursCtrl',
+      resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        }
+      }
+    })
+
+    .state('shoppingcart', {
+      url: '/shoppingcart',
+      templateUrl: "<%= asset_path('shoppingcart/shoppingcart.html')%>",
+      controller: 'shoppingcartCtrl',
+      resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        }
+      }
+    })
+
   $urlRouterProvider.otherwise('/');
 
   $authProvider.configure({
@@ -26,4 +48,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($s
     // Note that if you put a '/' at the end of the link, there will be errors when calling the api
     apiUrl: 'http://localhost:3000'
   });
+
+  stripeProvider.setPublishableKey('pk_test_WiuhJ7qaYllX2BMbT333Hy3S');
 }])

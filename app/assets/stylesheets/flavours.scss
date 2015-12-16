@@ -1,0 +1,65 @@
+#flavours {
+  .cover-flavours-img {
+    width: 100%;
+    height: 500px;
+    background-image: image-url("profile_background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    overflow: auto;
+    color: white;
+    margin-top: 0px;
+  }
+
+  .description {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  h1 {
+    line-height: 150%;
+    font-size: 30px;
+  }
+
+  .btn-start {
+    background-color: #E5692C;
+    color: white;
+    width: 220px;
+    height: 60px;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display: inline-block;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  // Product Selection
+  .product-selection {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 20px;
+
+      img {
+      height: 100px;
+      width: 150px;
+    }
+
+      span {
+        font-weight: bold;
+      }
+
+      button {
+        background-color: #E5692C;
+        color: white;
+        text-align: center;
+      }
+  }
+
+}

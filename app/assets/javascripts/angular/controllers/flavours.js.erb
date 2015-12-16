@@ -1,0 +1,87 @@
+app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $auth, $http){
+
+  $scope.addOrder = addOrder;
+  $scope.newOrder ={};
+  $scope.cart = {};
+
+  $scope.preferences = {
+    filter: [],
+    berry: {
+      imgOn:  "<%= asset_path('berry.jpg') %>",
+      imgOff: "<%= asset_path('berry_off.jpg') %>",
+      active: false
+    },
+    chocolate: {
+      imgOn:  "<%= asset_path('chocolate.jpg') %>",
+      imgOff: "<%= asset_path('chocolate_off.jpg') %>",
+      active: false
+    },
+    citrus: {
+      imgOn:  "<%= asset_path('citrus.jpg') %>",
+      imgOff: "<%= asset_path('citrus_off.jpg') %>",
+      active: false
+    },
+    nuts: {
+      imgOn:  "<%= asset_path('nuts.jpg') %>",
+      imgOff: "<%= asset_path('nuts_off.jpg') %>",
+      active: false
+    },
+    spices: {
+      imgOn:  "<%= asset_path('spices.jpg') %>",
+      imgOff: "<%= asset_path('spices_off.jpg') %>",
+      active: false
+    },
+    tropical_fruit: {
+      imgOn:  "<%= asset_path('tropical_fruit.jpg') %>",
+      imgOff: "<%= asset_path('tropical_fruit_off.jpg') %>",
+      active: false
+    },
+  }
+
+  $scope.toggleInput = function (p) {
+    var pCapitalized = p.capitalize();
+    var pIndex = $scope.preferences.filter.indexOf(pCapitalized);
+    if (pIndex !== -1) {
+      $scope.preferences.filter.splice(pIndex, 1);
+    } else {
+      $scope.preferences.filter.push(pCapitalized);
+    }
+
+    $scope.preferences[p].active = !$scope.preferences[p].active;
+  }
+
+  $scope.filterPreference = function(bean) {
+    if ($scope.preferences.filter.length == 0){
+      return ($scope.preferences.filter.indexOf(bean.flavours) == -1);
+    } else {
+      return ($scope.preferences.filter.indexOf(bean.flavours) !== -1);
+    }
+  };
+
+  $http({
+    method: "GET",
+    url: "http://localhost:3000/api/beans"
+  }).then(function(data){
+    $scope.beans = data.data;
+  })
+
+  function addOrder(bean_id, quantity){
+    console.log({quantity: quantity, bean_id: bean_id})
+    $http
+    .post('http://localhost:3000/api/orders', {quantity: quantity, bean_id: bean_id})
+    .success(function(data){
+      console.log(data)
+    });
+    $scope.newOrder = {};
+  }
+
+  $scope.addToCart = function (bean_id, quantity){
+    console.log({quantity: quantity, bean_id: bean_id})
+    if ($scope.cart[bean_id]) {
+      $scope.cart[bean_id] += quantity;
+    } else {
+      $scope.cart[bean_id] = quantity;
+    }
+  }
+
+}])

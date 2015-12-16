@@ -1,0 +1,59 @@
+<div id="flavours">
+  <div class="cover-flavours-img">
+    <user-nav-bar></user-nav-bar>
+    <div class="description">
+      <h1>Choose Your Favorite Flavours </h1>
+      <a href="/#/shoppingcart"><button class="btn btn-start">Checkout</button></a>
+    </div>
+  </div>
+
+  <section>
+  <ul>
+    <div class='row'>
+      <li class="berry col-md-4">
+        <img ng-src="{{preferences.berry.imgOn}}" ng-show="preferences.berry.active" ng-click="toggleInput('berry')">
+        <img ng-src="{{preferences.berry.imgOff}}" ng-hide="preferences.berry.active" ng-click="toggleInput('berry')">
+      </li>
+      <li class="chocolate col-md-4">
+        <img ng-src="{{preferences.chocolate.imgOn}}" ng-show="preferences.chocolate.active" ng-click="toggleInput('chocolate')">
+        <img ng-src="{{preferences.chocolate.imgOff}}" ng-hide="preferences.chocolate.active" ng-click="toggleInput('chocolate')">
+      </li>
+      <li class="citrus col-md-4">
+        <img ng-src="{{preferences.citrus.imgOn}}" ng-show="preferences.citrus.active" ng-click="toggleInput('citrus')">
+        <img ng-src="{{preferences.citrus.imgOff}}" ng-hide="preferences.citrus.active" ng-click="toggleInput('citrus')">
+      </li>
+    </div>
+    <div class='row'>
+      <li class="nuts col-md-4">
+        <img ng-src="{{preferences.nuts.imgOn}}" ng-show="preferences.nuts.active" ng-click="toggleInput('nuts')">
+        <img ng-src="{{preferences.nuts.imgOff}}" ng-hide="preferences.nuts.active" ng-click="toggleInput('nuts')">
+      </li>
+      <li class="spices col-md-4">
+        <img ng-src="{{preferences.spices.imgOn}}" ng-show="preferences.spices.active" ng-click="toggleInput('spices')">
+        <img ng-src="{{preferences.spices.imgOff}}" ng-hide="preferences.spices.active" ng-click="toggleInput('spices')">
+      </li>
+      <li class="tropical_fruit col-md-4">
+        <img ng-src="{{preferences.tropical_fruit.imgOn}}" ng-show="preferences.tropical_fruit.active" ng-click="toggleInput('tropical_fruit')">
+        <img ng-src="{{preferences.tropical_fruit.imgOff}}" ng-hide="preferences.tropical_fruit.active" ng-click="toggleInput('tropical_fruit')">
+      </li>
+    </div>
+  </ul>
+  </section>
+
+<!-- Product Selection -->
+  <section class='product-selection container-fluid'>
+    <li ng-repeat='bean in beans | filter : filterPreference'  class='col-sm-6 col-md-6 col-lg-4 well'>
+      <form ng-submit="addToCart(bean.id, order[$index].quantity)">
+        <img src="{{bean.image}}">
+        <h3>{{bean.bean_name}}</h3>
+        <p><span>Flavour:</span> {{bean.flavours}}</p>
+        <p>{{bean.description}}</p>
+        <p><span>Price:</span> ${{bean.price}}/ bag ({{bean.weight}} grams)</p>
+        <!-- <p>{{bean.stock}}</p> -->
+        <input type="number" ng-model="order[$index].quantity" placeholder="Quantity in Bags">
+        <button type="submit" class="btn">Add to Cart</button>
+      </form>
+    </li>
+  </section>
+
+</div>

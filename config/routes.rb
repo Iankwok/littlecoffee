@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   root 'static_pages#index'
 
-  # namespace :api do
-  #   resources :users, only:[:index, :show, :create], defaults: {:format => 'json'}
-  # end
+  namespace :api do
+    resources :beans, only:[:index], defaults: {:format => 'json'}
+    resources :orders, only:[:index, :show, :create, :update, :destroy], defaults: {:format => 'json'}
+  end
 
-  # resources :users
-
+  # review-denis | put in api
+  resources :charges
 end

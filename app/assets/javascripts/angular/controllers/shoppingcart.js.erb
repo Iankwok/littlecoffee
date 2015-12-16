@@ -1,0 +1,52 @@
+app.controller('shoppingcartCtrl', ['$scope', '$auth', '$http', 'stripe', 'UserFactory', function($scope, $auth, $http, stripe, UserFactory){
+  $scope.orders = [];
+  $scope.payment = {};
+
+  $scope.deleteOrderDetail = function(index){
+    $http
+    .delete("http://localhost:3000/api/orders/" + $scope.orders[index].order_detail_id)
+    .then(function(data){
+      $scope.orders.splice(index, 1);
+    })
+  };
+
+  $http({
+    method: "GET",
+    url: "http://localhost:3000/api/orders"
+  }).then(function(data){
+    $scope.orders = data.data;
+    console.log(data.data);
+  })
+
+  $scope.getTotal = function(){
+    var total = 0;
+    for(var i = 0; i < $scope.orders.length; i++){
+        var orderdetail = $scope.orders[i];
+        total += (orderdetail.price * orderdetail.quantity);
+    }
+    return total;
+  }
+
+  $scope.charge = function () {
+
+    stripe.card.createToken($scope.payment.card).then(function (response) {
+      console.log('token created for card ending in ', response.card.last4);
+      // set payment params
+      $scope.payment.card   = void 0;
+      $scope.payment.token  = response.id;
+      $scope.payment.amount = $scope.getTotal();
+      $scope.payment.email  = UserFactory.identity.email;
+
+      console.log($scope.payment)
+      $http({
+        url: "http://localhost:3000/charges",
+        method: "POST",
+        data: $scope.payment
+      }).then(function(response){
+        console.log(response);
+      }, function(response){
+        console.log(response);
+      })
+    })
+  };
+}]);

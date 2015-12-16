@@ -1,0 +1,29 @@
+#loginPage {
+
+  .cover-img {
+  width: 100%;
+  height: 1000px;
+  background-image: image-url("background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center;
+  overflow: auto;
+  color: white;
+  margin-top: 0px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .form-signin {
+  max-width: 500px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  }
+
+  input {
+    margin-bottom: 30px;
+  }
+
+}

@@ -1,0 +1,36 @@
+#usernavbar {
+
+  .navbar-brand {
+    width: 200px;
+  }
+
+  .logo {
+    background-image: image-url("logo.png");
+    background-repeat: no-repeat;
+    height:150px;
+    margin-top: 30px;
+    margin-left: 30px;
+  }
+
+  a {
+    color: white;
+  }
+
+  a:hover{
+    text-decoration: underline;
+  }
+
+  .nav {
+    margin-right: 30px;
+  }
+
+  #btn-coll {
+    border: solid 2px white;
+    margin-top: 30px;
+  }
+
+  .icon-bar {
+    background-color: white;
+  }
+
+}
