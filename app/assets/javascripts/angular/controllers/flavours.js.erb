@@ -3,6 +3,7 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
   $scope.addOrder = addOrder;
   $scope.newOrder ={};
   $scope.cart = {};
+  $scope.shoppingCart ={};
 
   $scope.preferences = {
     filter: [],
@@ -58,13 +59,6 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
     }
   };
 
-  $http({
-    method: "GET",
-    url: "http://localhost:3000/api/beans"
-  }).then(function(data){
-    $scope.beans = data.data;
-  })
-
   function addOrder(bean_id, quantity){
     console.log({quantity: quantity, bean_id: bean_id})
     $http
@@ -75,13 +69,29 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
     $scope.newOrder = {};
   }
 
-  $scope.addToCart = function (bean_id, quantity){
-    console.log({quantity: quantity, bean_id: bean_id})
-    if ($scope.cart[bean_id]) {
-      $scope.cart[bean_id] += quantity;
-    } else {
-      $scope.cart[bean_id] = quantity;
+  $scope.addToCart = function (bean){
+    if (!$scope.cart[bean.id]) {
+      $scope.cart[bean.id] = bean;
+      $scope.cart[bean.id].quantity = 1;
     }
   }
 
+  $scope.deleteBean = function (key) {
+    delete $scope.cart[key]
+  }
+
+  $scope.getTotal = function () {
+    var total = 0;
+    for(var key in $scope.cart){
+      total += $scope.cart[key].quantity * $scope.cart[key].price;
+    }
+    return total;
+  }
+
+  $http({
+    method: "GET",
+    url: "http://localhost:3000/api/beans"
+  }).then(function(data){
+    $scope.beans = data.data;
+  })
 }])

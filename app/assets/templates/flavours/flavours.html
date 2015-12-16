@@ -43,17 +43,50 @@
 <!-- Product Selection -->
   <section class='product-selection container-fluid'>
     <li ng-repeat='bean in beans | filter : filterPreference'  class='col-sm-6 col-md-6 col-lg-4 well'>
-      <form ng-submit="addToCart(bean.id, order[$index].quantity)">
+      <!-- <form ng-submit="addToCart(bean.id, order[$index].quantity)"> -->
         <img src="{{bean.image}}">
         <h3>{{bean.bean_name}}</h3>
         <p><span>Flavour:</span> {{bean.flavours}}</p>
         <p>{{bean.description}}</p>
         <p><span>Price:</span> ${{bean.price}}/ bag ({{bean.weight}} grams)</p>
-        <!-- <p>{{bean.stock}}</p> -->
-        <input type="number" ng-model="order[$index].quantity" placeholder="Quantity in Bags">
-        <button type="submit" class="btn">Add to Cart</button>
-      </form>
+        <!-- <input type="number" ng-model="order[$index].quantity" placeholder="Quantity in Bags"> -->
+        <button ng-click="addToCart(bean)"class="btn">Add to Cart</button>
+      <!-- </form> -->
     </li>
+  </section>
+
+  <section class='cart'>
+  <div class="container">
+    <h2>My Shopping Cart</h2>
+    <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Bean Name</th>
+          <th>Unit Price (USD)</th>
+          <th>Quantity</th>
+          <th>Subtotal (USD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(bean_id, details) in cart">
+          <td>{{details.bean_name}}</td>
+          <td>{{details.price}}</td>
+          <td><input type="number" min="0" ng-model="details.quantity"></td>
+          <td>{{details.quantity * details.price}}</td>
+          <td><button ng-click="deleteBean(bean_id)">Remove</button></td>
+        </tr>
+        <tr>
+          <td><span>Grand Total: {{getTotal()}}</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
   </section>
 
 </div>
