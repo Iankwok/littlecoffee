@@ -58,16 +58,6 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
     }
   };
 
-  function checkOut(){
-    for(var key in $scope.cart){
-      $http
-      .post('http://localhost:3000/api/orders', {quantity: $scope.cart[key].quantity, bean_id: key})
-      .success(function(data){
-        console.log(data)
-      });
-    }
-  }
-
   $scope.addToCart = function (bean){
     if ($scope.cart[bean.id]) {
       $scope.cart[bean.id].quantity += 1;
@@ -78,6 +68,7 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
   }
 
   $scope.deleteBean = function (key) {
+    console.log($scope.cart[key])
     delete $scope.cart[key]
   }
 
@@ -87,6 +78,16 @@ app.controller('FlavoursCtrl', ['$scope', '$auth', '$http', function($scope, $au
       total += $scope.cart[key].quantity * $scope.cart[key].price;
     }
     return total;
+  }
+
+  function checkOut(){
+    for(var key in $scope.cart){
+      $http
+      .post('http://localhost:3000/api/orders', {quantity: $scope.cart[key].quantity, bean_id: key})
+      .success(function(data){
+        console.log(data)
+      });
+    }
   }
 
   function initializeCart (orderDetails) {

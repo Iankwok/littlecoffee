@@ -11,6 +11,10 @@
     margin-top: 0px;
   }
 
+  .container {
+    margin-top: 50px;
+  }
+
   ul {
     list-style: none;
   }
@@ -24,6 +28,15 @@
   span {
     font-weight: bold;
     font-size: 16px;
+  }
+
+  button {
+    margin-left: 60px;
+  }
+
+  #test {
+    display: inline-block;
+    text-align: right;
   }
 
 }

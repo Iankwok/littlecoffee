@@ -41,6 +41,17 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', 'stripeProv
       }
     })
 
+    .state('myorders', {
+      url: '/myorders',
+      templateUrl: "<%= asset_path('myorders/myorders.html')%>",
+      controller: 'MyordersCtrl',
+      resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        }
+      }
+    })
+
   $urlRouterProvider.otherwise('/');
 
   $authProvider.configure({

@@ -1,0 +1,31 @@
+app.controller('MyordersCtrl', ['$scope', '$auth', '$http', function($scope, $auth, $http){
+
+  $scope.newOrder ={};
+  $scope.cart = {};
+
+
+  $scope.getTotal = function () {
+    var total = 0;
+    for(var key in $scope.cart){
+      total += $scope.cart[key].quantity * $scope.cart[key].price;
+    }
+    return total;
+  }
+
+// GET all beans
+  $http({
+    method: "GET",
+    url: "http://localhost:3000/api/beans"
+  }).then(function(data){
+    $scope.beans = data.data;
+  })
+
+  $http({
+    method: "GET",
+    url: "http://localhost:3000/api/myorders"
+  }).then(function(data){
+    console.log(data.data);
+    $scope.orderDetails = data.data;
+  })
+
+}])
